@@ -1,4 +1,4 @@
-filename=main.tex
+filename=main
 
 pdf: ps
 	ps2pdf ${filename}.ps

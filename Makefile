@@ -1,3 +1,4 @@
+SHELL=/usr/bin/bash
 filename=main
 
 pdf: ps

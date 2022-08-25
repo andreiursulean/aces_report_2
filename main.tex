@@ -1,0 +1,78 @@
+% vim: set tw=78 sts=2 sw=2 ts=8 aw et ai:
+\documentclass[12pt]{article}
+
+\usepackage[paper=a4paper, top=2cm, bottom=3cm, left=2.5cm, right=2.5cm]{geometry}
+
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[english]{babel}
+%\usepackage{hyperref}	  % use \url{http://$URL} or \href{http://$URL}{Name}
+\usepackage{underscore}	  % underscores need not be escaped
+\usepackage{subfigure}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{array}
+\usepackage{parskip}
+\usepackage{placeins}
+
+
+% Support for including graphics
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+\title{Galileo High Accuracy Service Receivers Using FPGA and DSP}
+
+\author{Andrei Ursulean\\
+Faculty of Electronics, Telecommunications and Information Technology\\
+University POLITEHNICA of Bucharest\\
+Splaiul Independenței 313, Bucharest, Romania, 060042 \\
+\emph{andrei.ursulean@stud.aero.upb.ro}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\input{src/abstract}
+\end{abstract}
+
+\section{Introduction}
+\label{sec:introduction}
+\input{src/introduction}
+
+% \section{GNSS}
+% \label{sec:gnss_intro}
+% \input{src/gnss_intro}
+
+\section{GNSS Accuracy}
+\label{sec:gnss_accuracy}
+\input{src/gnss_accuracy}
+
+\section{PPP Improvements}
+\label{sec:gnss_ppp}
+\input{src/gnss_ppp}
+ 
+\section{Galileo High Accuracy Service}
+\label{sec:galileo_has}
+\input{src/galileo_has}
+\FloatBarrier
+
+\section{GNSS Receivers}
+\label{sec:gnss_receivers}
+\input{src/gnss_receivers}
+\FloatBarrier
+
+\section{Conclusions and Further Work}
+\label{sec:conclusion}
+\input{src/conclusion}
+
+\section{Documentation Process}
+\label{sec:documentation}
+\input{src/documentation}
+
+\bibliographystyle{abbrv}
+\bibliography{ref}
+
+\end{document}

@@ -1,33 +1,29 @@
-SHELL=/usr/bin/bash
-filename=main
+BASENAME = main
+PDF = $(addsuffix .pdf, $(BASENAME))
+DVI = $(addsuffix .dvi, $(BASENAME))
+TEX = $(addsuffix .tex, $(BASENAME))
+BIB = $(addsuffix .bib, $(BASENAME))
+LATEX = latex
+PDFLATEX = pdflatex
+BIBTEX = bibtex
 
-pdf: ps
-	ps2pdf ${filename}.ps
+.PHONY: all clean
 
-pdf-print: ps
-	ps2pdf -dColorConversionStrategy=/LeaveColorUnchanged -dPDFSETTINGS=/printer ${filename}.ps
+all: $(PDF)
 
-text: html
-	html2text -width 100 -style pretty ${filename}/${filename}.html | sed -n '/./,$$p' | head -n-2 >${filename}.txt
+$(DVI): $(TEX) $(BIB) src/
+	$(LATEX) $<
+	$(BIBTEX) $(BASENAME)
+	# Twice, so TOC is also updated
+	$(LATEX) $<
+	$(LATEX) $<
 
-html:
-	@#latex2html -split +0 -info "" -no_navigation ${filename}
-	htlatex ${filename}
-
-ps:	dvi
-	dvips -t letter ${filename}.dvi
-
-dvi:
-	latex ${filename}
-	bibtex ${filename}||true
-	latex ${filename}
-	latex ${filename}
-
-read:
-	evince ${filename}.pdf &
-
-aread:
-	acroread ${filename}.pdf
+$(PDF): $(TEX) $(BIB) src/
+	$(PDFLATEX) $<
+	$(BIBTEX) $(BASENAME)
+	# Twice, so TOC is also updated
+	$(PDFLATEX) $<
+	$(PDFLATEX) $<
 
 clean:
-	rm -f ${filename}.{ps,pdf,log,aux,out,dvi,bbl,blg}
+	-rm -f *~ *.aux *.log *.blg *.bbl *.out
